@@ -1,0 +1,113 @@
+.prof-home-gallery {
+  --outer-gutter: 24px;
+  --cell-padding: 24px;
+  max-width: 984px;
+  padding: 0 var(--outer-gutter) 32px;
+}
+
+/* The guides, cell edges, and featured columns use the same two-column grid. */
+.prof-home-gallery::before {
+  inset: 0 var(--outer-gutter);
+  z-index: 1;
+  background-image: var(--guide-line), var(--guide-line), var(--guide-line);
+  background-position: 0 0, 50% 0, 100% 0;
+}
+.prof-home-gallery .home-heading {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 0;
+  padding: 40px 0 32px;
+}
+.prof-home-gallery .home-heading > div { padding-inline: var(--cell-padding); }
+.prof-home-gallery .home-heading p:last-child { margin-bottom: 0; }
+.prof-home-gallery .home-facts {
+  justify-self: start;
+  margin: 4px var(--cell-padding) 0;
+  border-collapse: collapse;
+  font: 14px/22px var(--annotation);
+}
+.prof-home-gallery .home-facts th {
+  text-align: left;
+  font-weight: 400;
+  color: var(--color-secondary);
+  padding: 4px 24px 4px 0;
+}
+.prof-home-gallery .home-facts td { padding: 4px 0; }
+.prof-home-gallery .home-contents {
+  margin: 0;
+  padding: 12px var(--cell-padding);
+  border-block: 1px solid var(--rule);
+}
+.prof-home-gallery .prof-nav a { min-height: 44px; min-width: 44px; }
+.prof-home-gallery .prof-section-heading {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: baseline;
+  gap: 0;
+  padding: 32px 0;
+  margin: 0;
+  border-bottom: 1px solid var(--rule);
+}
+.prof-home-gallery .prof-section-heading > * { padding-inline: var(--cell-padding); margin: 0; }
+.prof-home-gallery .prof-picture-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+}
+.prof-home-gallery .prof-picture-grid article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 4;
+  min-width: 0;
+  gap: 0;
+  padding: var(--cell-padding);
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+}
+.prof-home-gallery .prof-picture-grid article:has(a:hover),
+.prof-home-gallery .prof-picture-grid article:focus-within { background: var(--color-hover); }
+.prof-home-gallery .prof-picture-grid .prof-sketch { aspect-ratio: 1.6; }
+.prof-home-gallery .prof-picture-grid h3 {
+  font: 400 30px/38px var(--prose);
+  letter-spacing: -.02em;
+  margin: 24px 0 12px;
+}
+.prof-home-gallery .prof-picture-grid article > p:not(.prof-meta) { margin: 0 0 16px; }
+.prof-home-gallery .prof-picture-grid article > .prof-meta { margin: 0; }
+.prof-home-gallery .prof-picture-grid .prof-meta > a { display: inline-flex; min-height: 44px; align-items: center; }
+.prof-home-gallery .prof-picture-grid article:first-child {
+  grid-column: 1 / -1;
+  grid-row: auto;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto 1fr;
+  column-gap: calc(var(--cell-padding) * 2);
+  align-items: start;
+  padding: var(--cell-padding);
+}
+.prof-home-gallery .prof-picture-grid article:first-child figure { grid-row: 1 / 4; }
+.prof-home-gallery .prof-picture-grid article:first-child h3 { margin-top: 0; font-size: 30px; line-height: 38px; }
+.prof-home-gallery .prof-picture-grid article:first-child > .prof-meta { align-self: end; }
+.prof-home-gallery .prof-footer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px calc(var(--cell-padding) * 2);
+  padding: 24px var(--cell-padding) 0;
+  margin: 0;
+  border: 0;
+}
+.prof-home-gallery .prof-footer p { grid-column: 1; }
+.prof-home-gallery .prof-footer > a { grid-column: 2; grid-row: 1; justify-self: start; }
+
+@media (max-width: 760px) {
+  .prof-home-gallery { --outer-gutter: 12px; --cell-padding: 16px; }
+  .prof-home-gallery::before { background-image: var(--guide-line), var(--guide-line); background-position: 0 0, 100% 0; }
+  .prof-home-gallery .home-heading { grid-template-columns: 1fr; gap: 24px; padding-top: 28px; }
+  .prof-home-gallery .prof-section-heading { grid-template-columns: 1fr; gap: 12px; padding-block: 24px; }
+  .prof-home-gallery .prof-picture-grid { grid-template-columns: 1fr; }
+  .prof-home-gallery .prof-picture-grid article,
+  .prof-home-gallery .prof-picture-grid article:first-child { display: block; grid-row: auto; padding-block: 24px; }
+  .prof-home-gallery .prof-picture-grid article h3,
+  .prof-home-gallery .prof-picture-grid article:first-child h3 { font-size: 28px; line-height: 36px; margin-top: 24px; }
+}

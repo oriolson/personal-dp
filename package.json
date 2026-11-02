@@ -1,0 +1,11 @@
+{
+  "name": "personal-dp",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/check.mjs",
+    "preview": "node scripts/serve.mjs"
+  }
+}
