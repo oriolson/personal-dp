@@ -40,7 +40,7 @@ const editorial = await readFile(new URL('editorial/index.html', output), 'utf8'
 assert.equal((editorial.match(/class="ed-card"/g) || []).length, 5);
 assert.ok(editorial.includes('data-default-theme="light"'));
 assert.deepEqual(defaults, {
-  theme: 'light', navigation: false, grid: false, rules: true, artwork: true, facts: true,
+  theme: 'light', navigation: false, grid: true, rules: true, artwork: true, facts: true,
   headingFont: 'helvetica', bodyFont: 'helvetica', headingWeight: 500, headingSize: 56,
   headingTracking: -.052, bodySize: 16, cardTitleSize: 24, pageWidth: 1088,
   introTop: 96, introBottom: 72, cellPadding: 24,

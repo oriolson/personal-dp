@@ -8,7 +8,7 @@ const fonts = [
 export const controls = [
   { id: 'theme', group: 'Appearance', label: 'Theme', type: 'choice', default: 'light', options: [{ value: 'dark', label: 'Dark' }, { value: 'light', label: 'Light' }] },
   { id: 'navigation', group: 'Appearance', label: 'Top navigation', type: 'boolean', default: false },
-  { id: 'grid', group: 'Appearance', label: 'Grid guides', type: 'boolean', default: false },
+  { id: 'grid', group: 'Appearance', label: 'Grid guides', type: 'boolean', default: true },
   { id: 'rules', group: 'Appearance', label: 'Section rules', type: 'boolean', default: true },
   { id: 'artwork', group: 'Appearance', label: 'Project illustrations', type: 'boolean', default: true },
   { id: 'facts', group: 'Appearance', label: 'Profile facts', type: 'boolean', default: true },
