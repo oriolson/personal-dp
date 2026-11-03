@@ -7,7 +7,9 @@ import { renderDesignWorkbench } from '../src/design-workbench.js';
 const output = new URL('../dist/', import.meta.url);
 await rm(output, { recursive: true, force: true });
 await mkdir(new URL('assets/', output), { recursive: true });
-await writeFile(new URL('index.html', output), renderHome());
+await writeFile(new URL('index.html', output), renderEditorialHome({ root: './' }));
+await mkdir(new URL('original/', output), { recursive: true });
+await writeFile(new URL('original/index.html', output), renderHome({ root: '../' }));
 await mkdir(new URL('editorial/', output), { recursive: true });
 await writeFile(new URL('editorial/index.html', output), renderEditorialHome());
 await mkdir(new URL('editorial/design/', output), { recursive: true });
@@ -15,7 +17,10 @@ await writeFile(new URL('editorial/design/index.html', output), renderDesignWork
 for (const project of portfolio) {
   const directory = new URL(`projects/${project.id}/`, output);
   await mkdir(directory, { recursive: true });
-  await writeFile(new URL('index.html', directory), renderProject(project));
+  await writeFile(new URL('index.html', directory), renderEditorialProject(project, { assetsRoot: '../../' }));
+  const originalDirectory = new URL(`original/projects/${project.id}/`, output);
+  await mkdir(originalDirectory, { recursive: true });
+  await writeFile(new URL('index.html', originalDirectory), renderProject(project, { assetsRoot: '../../../' }));
   const editorialDirectory = new URL(`editorial/projects/${project.id}/`, output);
   await mkdir(editorialDirectory, { recursive: true });
   await writeFile(new URL('index.html', editorialDirectory), renderEditorialProject(project));
@@ -31,4 +36,4 @@ for (const file of ['editorial.css', 'inter.woff2', 'Inter-LICENSE.txt', 'design
 }
 await writeFile(new URL('404.html', output), renderNotFound());
 await writeFile(new URL('.nojekyll', output), '');
-console.log(`Built two directions, a design workbench, ${portfolio.length * 2} project pages, and 404 page.`);
+console.log(`Built the editorial site, original archive, design workbench, ${portfolio.length * 3} project pages, and 404 page.`);

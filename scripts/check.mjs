@@ -4,7 +4,7 @@ import { portfolio } from '../src/content.js';
 import { controls, defaults, normalizeSettings, parseConfig, serializeConfig, configURL, styleVariables } from '../assets/design-settings.js';
 
 const output = new URL('../dist/', import.meta.url);
-const paths = ['index.html', 'editorial/index.html', 'editorial/design/index.html', ...portfolio.flatMap(project => [`projects/${project.id}/index.html`, `editorial/projects/${project.id}/index.html`]), '404.html'];
+const paths = ['index.html', 'original/index.html', 'editorial/index.html', 'editorial/design/index.html', ...portfolio.flatMap(project => [`projects/${project.id}/index.html`, `editorial/projects/${project.id}/index.html`, `original/projects/${project.id}/index.html`]), '404.html'];
 for (const path of paths) {
   const file = new URL(path, output);
   const html = await readFile(file, 'utf8');
@@ -26,17 +26,19 @@ for (const path of paths) {
     if (hash) assert.ok((await readFile(target, 'utf8')).includes(`id="${hash}"`), `${path}: missing anchor ${attribute}`);
   }
 }
-const home = await readFile(new URL('index.html', output), 'utf8');
+const home = await readFile(new URL('original/index.html', output), 'utf8');
 assert.equal((home.match(/<article>/g) || []).length, 5);
 assert.ok(!home.includes('Inside the project') && !home.includes('Questions worth writing about'));
 for (const project of portfolio) {
   assert.ok(home.includes(`projects/${project.id}/`));
   assert.ok(!home.includes(project.question));
-  const html = await readFile(new URL(`projects/${project.id}/index.html`, output), 'utf8');
+  const html = await readFile(new URL(`original/projects/${project.id}/index.html`, output), 'utf8');
   assert.ok(html.includes('id="question"') && html.includes('id="inside"') && html.includes('id="sources"'));
   assert.ok(!portfolio.some(other => other.id !== project.id && html.includes(other.question)));
 }
 const editorial = await readFile(new URL('editorial/index.html', output), 'utf8');
+const publishedHome = await readFile(new URL('index.html', output), 'utf8');
+assert.equal(publishedHome.replaceAll('./assets/', '../assets/').replaceAll('href="./original/"', 'href="../original/"'), editorial, 'Published homepage matches the selected editorial design');
 assert.equal((editorial.match(/class="ed-card"/g) || []).length, 5);
 assert.ok(editorial.includes('data-default-theme="light"'));
 assert.deepEqual(defaults, {
@@ -46,7 +48,7 @@ assert.deepEqual(defaults, {
   introTop: 96, introBottom: 72, cellPadding: 24,
 });
 assert.ok(!home.includes('data-design-preview'), 'The original direction does not inherit editorial settings');
-for (const path of ['editorial/index.html', ...portfolio.map(project => `editorial/projects/${project.id}/index.html`)]) {
+for (const path of ['index.html', 'editorial/index.html', ...portfolio.flatMap(project => [`projects/${project.id}/index.html`, `editorial/projects/${project.id}/index.html`])]) {
   const html = await readFile(new URL(path, output), 'utf8');
   const root = html.match(/<html\b[^>]*>/)[0];
   assert.ok(root.includes('data-theme="light"'), `${path}: light theme without JavaScript`);
@@ -70,6 +72,8 @@ for (const project of portfolio) {
   assert.ok(editorial.includes(`projects/${project.id}/`));
   assert.ok(!editorial.includes(project.question));
   const html = await readFile(new URL(`editorial/projects/${project.id}/index.html`, output), 'utf8');
+  const publishedProject = await readFile(new URL(`projects/${project.id}/index.html`, output), 'utf8');
+  assert.equal(publishedProject.replaceAll('../../assets/', '../../../assets/'), html, 'Published project matches the editorial preview');
   assert.ok(html.includes('class="editorial-page"'));
   assert.ok(html.includes('id="question"') && html.includes('id="inside"') && html.includes('id="sources"'));
   assert.ok(html.includes('href="../../#work"'));

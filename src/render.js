@@ -45,10 +45,11 @@ export function profileFacts(className = 'home-facts', { location } = {}) {
   </tbody></table>`;
 }
 
-export function renderHome() {
+export function renderHome({ root = './' } = {}) {
   return documentPage({
     title: 'Ori Olson / Product designer',
     description: profile.bio,
+    root,
     body: `<div class="prof-site prof-home-gallery">
       <header class="home-heading" id="about">
         <div><h1>${profile.name}</h1><p>Product designer at GitHub<br>Brooklyn, NY</p><p><a href="${profile.url}">@oriolson on GitHub</a></p></div>
@@ -68,12 +69,12 @@ export function renderHome() {
   });
 }
 
-export function renderProject(item, { editorial = false, illustration = sketch } = {}) {
+export function renderProject(item, { editorial = false, illustration = sketch, assetsRoot = editorial ? '../../../' : '../../' } = {}) {
   const root = '../../';
   return documentPage({
     title: `${item.name} / Ori Olson`,
     description: item.summary,
-    root: editorial ? '../../../' : root,
+    root: assetsRoot,
     editorial,
     body: `<div class="prof-site prof-project">
       <nav class="prof-nav project-breadcrumb" aria-label="Project navigation"><a href="${root}#work" data-theme-link>All projects</a><a href="${profile.url}">Ori Olson / GitHub</a>${themeButton}</nav>

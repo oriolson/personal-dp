@@ -8,6 +8,7 @@ const files = new Map([
   ['', 'index.html'], ['index.html', 'index.html'], ['404.html', '404.html'],
   ['assets/site.css', 'assets/site.css'], ['assets/site.js', 'assets/site.js'],
   ['editorial/', 'editorial/index.html'], ['editorial/index.html', 'editorial/index.html'],
+  ['original/', 'original/index.html'], ['original/index.html', 'original/index.html'],
   ['editorial/design/', 'editorial/design/index.html'], ['editorial/design/index.html', 'editorial/design/index.html'],
   ...['editorial.css', 'inter.woff2', 'Inter-LICENSE.txt', 'design-settings.js', 'design-preview.js', 'design-preview.css', 'design-workbench.js', 'design-workbench.css'].map(file => [`assets/${file}`, `assets/${file}`]),
   ...portfolio.flatMap(project => [
@@ -15,6 +16,8 @@ const files = new Map([
     [`projects/${project.id}/index.html`, `projects/${project.id}/index.html`],
     [`editorial/projects/${project.id}/`, `editorial/projects/${project.id}/index.html`],
     [`editorial/projects/${project.id}/index.html`, `editorial/projects/${project.id}/index.html`],
+    [`original/projects/${project.id}/`, `original/projects/${project.id}/index.html`],
+    [`original/projects/${project.id}/index.html`, `original/projects/${project.id}/index.html`],
   ]),
 ]);
 const server = createServer(async (request, response) => {

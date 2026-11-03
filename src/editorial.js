@@ -31,14 +31,14 @@ function card(item) {
   </a></article>`;
 }
 
-export function renderEditorialHome() {
+export function renderEditorialHome({ root = '../' } = {}) {
   return documentPage({
     title: 'Ori Olson / Work & experiments',
     description: profile.bio,
-    root: '../',
+    root,
     editorial: true,
     body: `<div class="ed-shell">
-      <header class="ed-masthead"><a class="ed-wordmark" href="#top">${profile.name}</a><nav aria-label="Page contents"><a href="#work">Work</a><a href="#about">About</a><a href="${profile.url}">GitHub</a><a class="ed-compare" href="../" data-theme-link data-default-theme="light">Original version</a></nav>${themeButton}</header>
+      <header class="ed-masthead"><a class="ed-wordmark" href="#top">${profile.name}</a><nav aria-label="Page contents"><a href="#work">Work</a><a href="#about">About</a><a href="${profile.url}">GitHub</a><a class="ed-compare" href="${root}original/" data-theme-link data-default-theme="light">Original version</a></nav>${themeButton}</header>
       <section class="ed-intro" id="about">
         <div class="ed-intro-layout">
           <div class="ed-intro-copy"><h1>Product work and<br> other experiments.</h1><p>Work on Copilot for mobile, alongside personal tools and things made out of curiosity.</p></div>
@@ -51,6 +51,6 @@ export function renderEditorialHome() {
   });
 }
 
-export function renderEditorialProject(item) {
-  return renderProject(item, { editorial: true, illustration: editorialArtwork });
+export function renderEditorialProject(item, { assetsRoot = '../../../' } = {}) {
+  return renderProject(item, { editorial: true, illustration: editorialArtwork, assetsRoot });
 }
