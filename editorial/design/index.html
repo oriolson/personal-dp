@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design controls / Ori Olson</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/design-workbench.css">
+  <script type="module" src="../../assets/design-workbench.js"></script>
+</head>
+<body class="design-workbench">
+  <header class="design-toolbar">
+    <h1>Design controls</h1>
+    <label class="design-page-picker">Page <select id="design-page"><option value="home" data-path="../">Landing page</option><option value="copilot-mobile" data-path="../projects/copilot-mobile/">GitHub Copilot on mobile</option><option value="little-proof" data-path="../projects/little-proof/">Little Proof</option><option value="freeze" data-path="../projects/freeze/">Freeze</option><option value="tide-now" data-path="../projects/tide-now/">Tide Now</option><option value="digital-expanse" data-path="../projects/digital-expanse/">Digital Expanse</option></select></label>
+    <label>Viewport <select id="design-viewport"><option value="fit">Fit</option><option value="desktop">Desktop / 1440</option><option value="tablet">Tablet / 768</option><option value="phone">Phone / 390</option></select></label>
+    <a id="design-open" href="../?design=1" target="_blank" rel="noopener">Open preview &#8599;</a>
+    <button id="design-toggle-panel" type="button" aria-expanded="true" aria-controls="design-panel">Hide controls</button>
+  </header>
+  <main class="design-layout">
+    <section class="design-canvas" aria-label="Site preview">
+      <div class="design-canvas-label"><span>Live preview</span><output id="design-width" aria-label="Preview width"></output></div>
+      <div class="design-stage"><iframe id="design-frame" title="Live portfolio preview" src="../?design=1"></iframe></div>
+    </section>
+    <aside class="design-panel" id="design-panel" aria-label="Design adjustments">
+      <p class="design-help">Preview only. Settings stay in this URL; site files are unchanged.</p>
+      <p id="design-error" role="alert" hidden></p>
+      <form id="design-form">
+        <details open><summary>Appearance</summary><div class="design-field"><label for="control-theme">Theme</label><select id="control-theme" name="theme"><option value="dark">Dark</option><option value="light" selected>Light</option></select></div><label class="design-check" for="control-navigation"><span>Top navigation</span><input id="control-navigation" name="navigation" type="checkbox"></label><label class="design-check" for="control-grid"><span>Grid guides</span><input id="control-grid" name="grid" type="checkbox" checked></label><label class="design-check" for="control-rules"><span>Section rules</span><input id="control-rules" name="rules" type="checkbox" checked></label><label class="design-check" for="control-artwork"><span>Project illustrations</span><input id="control-artwork" name="artwork" type="checkbox" checked></label><label class="design-check" for="control-facts"><span>Profile facts</span><input id="control-facts" name="facts" type="checkbox" checked></label></details><details open><summary>Typography</summary><div class="design-field"><label for="control-headingFont">Heading typeface</label><select id="control-headingFont" name="headingFont"><option value="inter">Inter</option><option value="system">System sans</option><option value="helvetica" selected>Helvetica</option><option value="serif">Times serif</option></select></div><div class="design-field"><label for="control-bodyFont">Body typeface</label><select id="control-bodyFont" name="bodyFont"><option value="inter">Inter</option><option value="system">System sans</option><option value="helvetica" selected>Helvetica</option><option value="serif">Times serif</option></select></div><div class="design-field"><label for="control-headingWeight">Heading weight</label><select id="control-headingWeight" name="headingWeight"><option value="400">Regular / 400</option><option value="500" selected>Medium / 500</option><option value="600">Semibold / 600</option></select></div><div class="design-field"><label for="control-headingSize">Headline size</label><output for="control-headingSize" data-output="headingSize">56px</output><input id="control-headingSize" name="headingSize" type="range" min="40" max="72" step="2" value="56"></div><div class="design-field"><label for="control-headingTracking">Headline letter spacing</label><output for="control-headingTracking" data-output="headingTracking">-0.052em</output><input id="control-headingTracking" name="headingTracking" type="range" min="-0.08" max="0" step="0.002" value="-0.052"></div><div class="design-field"><label for="control-bodySize">Body size</label><output for="control-bodySize" data-output="bodySize">16px</output><input id="control-bodySize" name="bodySize" type="range" min="14" max="20" step="1" value="16"></div><div class="design-field"><label for="control-cardTitleSize">Project title size</label><output for="control-cardTitleSize" data-output="cardTitleSize">24px</output><input id="control-cardTitleSize" name="cardTitleSize" type="range" min="20" max="32" step="1" value="24"></div></details><details open><summary>Layout</summary><p class="design-help">Header spacing and profile facts affect the landing page. Type sizes adapt on smaller screens.</p><div class="design-field"><label for="control-pageWidth">Maximum page width</label><output for="control-pageWidth" data-output="pageWidth">1088px</output><input id="control-pageWidth" name="pageWidth" type="range" min="880" max="1440" step="16" value="1088"></div><div class="design-field"><label for="control-introTop">Header space above</label><output for="control-introTop" data-output="introTop">96px</output><input id="control-introTop" name="introTop" type="range" min="32" max="144" step="8" value="96"></div><div class="design-field"><label for="control-introBottom">Header space below</label><output for="control-introBottom" data-output="introBottom">72px</output><input id="control-introBottom" name="introBottom" type="range" min="24" max="112" step="8" value="72"></div><div class="design-field"><label for="control-cellPadding">Cell padding</label><output for="control-cellPadding" data-output="cellPadding">24px</output><input id="control-cellPadding" name="cellPadding" type="range" min="16" max="40" step="4" value="24"></div></details>
+      </form>
+      <div class="design-actions"><button type="button" id="design-reset">Reset</button><button type="button" id="design-copy">Copy settings</button></div>
+      <p id="design-status" role="status" aria-live="polite"></p>
+      <div id="design-copy-fallback" hidden><label for="design-settings-text">Select and copy these settings</label><textarea id="design-settings-text" readonly rows="8"></textarea></div>
+    </aside>
+  </main>
+  <noscript><p>Interactive controls need JavaScript. <a href="../">Open the portfolio</a>.</p></noscript>
+</body>
+</html>

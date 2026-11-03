@@ -1,21 +1,22 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-default-theme="light" data-design-preview="true" data-design-navigation="false" data-design-grid="true" data-design-rules="true" data-design-artwork="true" data-design-facts="true" style="--design-heading-font:Helvetica, &quot;Helvetica Neue&quot;, Arial, sans-serif;--design-body-font:Helvetica, &quot;Helvetica Neue&quot;, Arial, sans-serif;--design-heading-weight:500;--design-heading-size:56px;--design-heading-scale:1;--design-heading-tracking:-0.052em;--design-body-size:16px;--design-card-title-size:24px;--design-page-width:1088px;--design-intro-top:96px;--design-intro-bottom:72px;--design-cell-padding:24px;--design-mobile-padding:16px">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A screen-review tool for preserving menus, hover states, and other fleeting UI before annotating them or inspecting a recording frame by frame.">
   <title>Freeze / Ori Olson</title>
   <link rel="icon" href="data:,">
-  <script>document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light';</script>
+  <script>const requestedTheme = new URLSearchParams(location.search).get('theme'); document.documentElement.dataset.theme = ['light', 'dark'].includes(requestedTheme) ? requestedTheme : document.documentElement.dataset.theme;</script>
   <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/editorial.css"><link rel="stylesheet" href="../../assets/design-preview.css"><script type="module" src="../../assets/design-preview.js"></script>
   <script type="module" src="../../assets/site.js"></script>
 </head>
-<body>
+<body class="editorial-page">
   <a class="skip" href="#top">Skip to content</a>
   <main id="top" tabindex="-1"><div class="prof-site prof-project">
       <nav class="prof-nav project-breadcrumb" aria-label="Project navigation"><a href="../../#work" data-theme-link>All projects</a><a href="https://github.com/oriolson">Ori Olson / GitHub</a><button type="button" class="theme-toggle" aria-pressed="false" hidden>Dark mode</button></nav>
       <header class="project-intro"><p class="prof-meta">macOS review tool / Local prototype</p><h1>Freeze</h1><p class="project-deck">Keeping a fleeting interface still</p><p>A screen-review tool for preserving menus, hover states, and other fleeting UI before annotating them or inspecting a recording frame by frame.</p></header>
-      <figure class="prof-figure project-hero"><div class="prof-sketch" role="img" aria-label="Freeze: explanatory process sketch, not a product screenshot"><span class="sketch-label">FREEZE / PROCESS SKETCH</span><div class="sketch-freeze"><div class="sketch-window">An open menu<hr><div class="sketch-highlight">Keep this state.</div></div><p>Capture first.<br>Show the tool<br>afterward.</p></div><span class="sketch-note">Diagram of the project idea, not a product screenshot.</span></div><figcaption>Explanatory process sketch, not a product screenshot.</figcaption></figure>
+      <figure class="prof-figure project-hero"><div class="ed-art ed-art-freeze" role="img" aria-label="Freeze: concept illustration, not a product screenshot"><div class="ed-capture"><div class="ed-capture-menu"><span>A fleeting state</span><div class="ed-capture-selection">Keep this moment.</div><i></i></div><svg viewBox="0 0 24 30" aria-hidden="true"><path d="M2 2L22 18L13 19L9 28Z"/></svg></div><span class="ed-art-note">Concept illustration</span></div><figcaption>Explanatory process sketch, not a product screenshot.</figcaption></figure>
       <article class="project-reading" aria-label="Project story">
         <section id="question"><h2>The question</h2><p class="project-question">How do you review a state that disappears when you try to capture it?</p></section>
         <section id="inside"><h2>Inside the project</h2><h3>The context</h3><p>Opening a capture interface can change the very state someone wants to review. Freeze captures the screen before its own window appears, keeping the review tool out of the evidence.</p><h3>Recorded choices</h3><ul><li>Capture before showing the overlay so the original interface state remains intact.</li><li>Step through recordings using frame presentation times rather than assuming an even frame rate.</li><li>Make annotated evidence readable by people and agents through image and structured review exports.</li></ul></section>

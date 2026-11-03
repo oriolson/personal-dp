@@ -1,21 +1,22 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="light" data-default-theme="light" data-design-preview="true" data-design-navigation="false" data-design-grid="true" data-design-rules="true" data-design-artwork="true" data-design-facts="true" style="--design-heading-font:Helvetica, &quot;Helvetica Neue&quot;, Arial, sans-serif;--design-body-font:Helvetica, &quot;Helvetica Neue&quot;, Arial, sans-serif;--design-heading-weight:500;--design-heading-size:56px;--design-heading-scale:1;--design-heading-tracking:-0.052em;--design-body-size:16px;--design-card-title-size:24px;--design-page-width:1088px;--design-intro-top:96px;--design-intro-bottom:72px;--design-cell-padding:24px;--design-mobile-padding:16px">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="A mobile-first tide checker for fishing: one day, a scrubbable tide curve, high and low times, and nearby weather.">
   <title>Tide Now / Ori Olson</title>
   <link rel="icon" href="data:,">
-  <script>document.documentElement.dataset.theme = new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light';</script>
+  <script>const requestedTheme = new URLSearchParams(location.search).get('theme'); document.documentElement.dataset.theme = ['light', 'dark'].includes(requestedTheme) ? requestedTheme : document.documentElement.dataset.theme;</script>
   <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/editorial.css"><link rel="stylesheet" href="../../assets/design-preview.css"><script type="module" src="../../assets/design-preview.js"></script>
   <script type="module" src="../../assets/site.js"></script>
 </head>
-<body>
+<body class="editorial-page">
   <a class="skip" href="#top">Skip to content</a>
   <main id="top" tabindex="-1"><div class="prof-site prof-project">
       <nav class="prof-nav project-breadcrumb" aria-label="Project navigation"><a href="../../#work" data-theme-link>All projects</a><a href="https://github.com/oriolson">Ori Olson / GitHub</a><button type="button" class="theme-toggle" aria-pressed="false" hidden>Dark mode</button></nav>
       <header class="project-intro"><p class="prof-meta">Mobile web / Source published</p><h1>Tide Now</h1><p class="project-deck">One day of useful information</p><p>A mobile-first tide checker for fishing: one day, a scrubbable tide curve, high and low times, and nearby weather.</p></header>
-      <figure class="prof-figure project-hero"><div class="prof-sketch" role="img" aria-label="Tide Now: explanatory process sketch, not a product screenshot"><span class="sketch-label">TIDE NOW / PROCESS SKETCH</span><div class="sketch-tide"><svg viewBox="0 0 400 150" aria-hidden="true"><path d="M0 130H400 M0 20V130" fill="none" stroke="currentColor" opacity=".3"/><path d="M0 100C55 100 50 25 110 25S180 115 240 115S320 35 400 35" fill="none" stroke="currentColor" stroke-width="2"/><path d="M165 20V130" stroke="currentColor" stroke-dasharray="3 4" opacity=".4"/></svg><div class="tide-scale"><span>One selected day</span><span>Weather, if available</span></div></div><span class="sketch-note">Schematic only. Not live tide data.</span></div><figcaption>Explanatory process sketch, not a product screenshot.</figcaption></figure>
+      <figure class="prof-figure project-hero"><div class="ed-art ed-art-tide-now" role="img" aria-label="Tide Now: concept illustration, not a product screenshot"><div class="ed-water"><svg viewBox="0 0 400 150" aria-hidden="true"><path class="ed-axis" d="M0 125H400 M187.5 15V135"/><path class="ed-curve" d="M0 105C60 105 65 30 120 30S200 120 255 120S330 35 400 35"/><circle cx="187.5" cy="75" r="4"/></svg><span>One selected day</span></div><span class="ed-art-note">Schematic, not live data</span></div><figcaption>Explanatory process sketch, not a product screenshot.</figcaption></figure>
       <article class="project-reading" aria-label="Project story">
         <section id="question"><h2>The question</h2><p class="project-question">What is enough information for a quick decision by the water?</p></section>
         <section id="inside"><h2>Inside the project</h2><h3>The context</h3><p>The project is intentionally narrow. It shows a selected day rather than a dashboard, combining tide predictions with weather as supporting context.</p><h3>Recorded choices</h3><ul><li>Keep the primary view centered on one selected day.</li><li>Make the tide curve, next high and low, and movement cues easy to inspect together.</li><li>Treat weather as optional context rather than a dependency for showing tide information.</li></ul></section>
