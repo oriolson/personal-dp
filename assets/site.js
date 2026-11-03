@@ -1,11 +1,12 @@
 const button = document.querySelector('.theme-toggle');
 let theme = document.documentElement.dataset.theme;
+const defaultTheme = document.documentElement.dataset.defaultTheme || 'light';
 
 function applyTheme() {
   document.documentElement.dataset.theme = theme;
   document.querySelectorAll('a[data-theme-link]').forEach(link => {
     const url = new URL(link.href);
-    if (theme === 'dark') url.searchParams.set('theme', 'dark');
+    if (theme !== (link.dataset.defaultTheme || defaultTheme)) url.searchParams.set('theme', theme);
     else url.searchParams.delete('theme');
     link.href = url.href;
   });
@@ -14,16 +15,22 @@ function applyTheme() {
     button.setAttribute('aria-pressed', String(theme === 'dark'));
   }
   const url = new URL(location.href);
-  if (theme === 'dark') url.searchParams.set('theme', 'dark');
+  if (theme !== defaultTheme) url.searchParams.set('theme', theme);
   else url.searchParams.delete('theme');
   history.replaceState(null, '', url);
+}
+
+export function setTheme(nextTheme) {
+  if (!['light', 'dark'].includes(nextTheme)) throw new TypeError('Unknown theme.');
+  theme = nextTheme;
+  applyTheme();
+  document.dispatchEvent(new CustomEvent('portfolio-theme-change', { detail: { theme } }));
 }
 
 if (button) {
   button.hidden = false;
   button.addEventListener('click', () => {
-    theme = theme === 'light' ? 'dark' : 'light';
-    applyTheme();
+    setTheme(theme === 'light' ? 'dark' : 'light');
   });
 }
 applyTheme();
