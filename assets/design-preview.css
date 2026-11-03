@@ -1,0 +1,48 @@
+.design-launcher { position: fixed; right: 16px; bottom: 16px; z-index: 20; padding: 12px 16px; min-height: 44px; border: 1px solid var(--rule); background: var(--color-page); font: 14px/20px var(--annotation); }
+[data-design-preview] .editorial-page { --prose: var(--design-body-font); --annotation: var(--design-body-font); font-size: var(--design-body-size); line-height: 1.5; }
+[data-design-preview] .editorial-page h1,
+[data-design-preview] .editorial-page h2,
+[data-design-preview] .editorial-page h3 { font-family: var(--design-heading-font); font-weight: var(--design-heading-weight); }
+[data-design-preview] .editorial-page h1 { font-size: var(--design-heading-size); line-height: calc(var(--design-heading-size) * 8 / 7); letter-spacing: var(--design-heading-tracking); overflow-wrap: break-word; }
+[data-design-preview] .ed-shell,
+[data-design-preview] .editorial-page .prof-project { max-width: var(--design-page-width); }
+[data-design-preview] .ed-intro { padding: var(--design-intro-top) var(--design-cell-padding) var(--design-intro-bottom); }
+[data-design-preview] .ed-intro-layout { grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--design-heading-size) * 7.4)), 1fr)); gap: calc(var(--design-cell-padding) * 2); }
+[data-design-preview] .ed-intro-copy > p,
+[data-design-preview] .editorial-page .project-intro > p:last-child { font-size: calc(var(--design-body-size) * 1.125); line-height: calc(var(--design-body-size) * 1.75); }
+[data-design-preview] .ed-masthead,
+[data-design-preview] .ed-footer { padding-inline: var(--design-cell-padding); }
+[data-design-preview] .ed-card-link { padding: var(--design-cell-padding); }
+[data-design-preview] .ed-card h2 { font-size: var(--design-card-title-size); line-height: calc(var(--design-card-title-size) * 4 / 3); }
+[data-design-preview] .editorial-page .prof-project { padding-inline: calc(16px + var(--design-cell-padding)); }
+[data-design-preview] .editorial-page .project-reading { font-size: calc(var(--design-body-size) * 1.0625); line-height: calc(var(--design-body-size) * 1.75); }
+[data-design-navigation="false"] .ed-masthead,
+[data-design-navigation="false"] .editorial-page .project-breadcrumb { display: none; }
+[data-design-grid="false"] .ed-shell::before,
+[data-design-grid="false"] .ed-intro::before,
+[data-design-grid="false"] .ed-lead-grid::after,
+[data-design-grid="false"] .ed-support-grid::after,
+[data-design-grid="false"] .prof-project::before { display: none; }
+[data-design-rules="false"] .ed-masthead,
+[data-design-rules="false"] .ed-intro,
+[data-design-rules="false"] .ed-card,
+[data-design-rules="false"] .project-breadcrumb,
+[data-design-rules="false"] .project-more,
+[data-design-rules="false"] .prof-footer { border-color: transparent; }
+[data-design-artwork="false"] .ed-art,
+[data-design-artwork="false"] .project-hero { display: none; }
+[data-design-facts="false"] .ed-facts { display: none; }
+[data-design-facts="false"] .ed-intro-layout { grid-template-columns: minmax(0, 1fr); }
+.design-preview-error { padding: 12px 24px; border-bottom: 1px solid var(--rule); font: 14px/22px var(--annotation); }
+@media (max-width: 959px) {
+  [data-design-preview] .ed-intro-layout { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 640px) {
+  [data-design-preview] .editorial-page h1 { font-size: clamp(calc(var(--design-heading-size) * 4 / 7), calc(10.25vw * var(--design-heading-scale)), calc(var(--design-heading-size) * 5 / 7)); line-height: 1.15; }
+  [data-design-preview] .ed-intro { padding: calc(var(--design-intro-top) / 2) var(--design-mobile-padding) calc(var(--design-intro-bottom) * 2 / 3); }
+  [data-design-preview] .ed-intro-copy > p { font-size: var(--design-body-size); line-height: calc(var(--design-body-size) * 1.5); }
+  [data-design-preview] .ed-masthead,
+  [data-design-preview] .ed-footer { padding-inline: var(--design-mobile-padding); }
+  [data-design-preview] .ed-card-link { padding: var(--design-cell-padding) var(--design-mobile-padding); }
+  [data-design-preview] .editorial-page .prof-project { padding-inline: calc(12px + var(--design-mobile-padding)); }
+}

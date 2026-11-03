@@ -1,0 +1,48 @@
+@font-face { font-family: "Design Inter"; src: url("inter.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+.design-workbench { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; font: 14px/20px "Design Inter", system-ui, sans-serif; letter-spacing: 0; }
+.design-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding: 12px 20px; border-bottom: 1px solid var(--rule); }
+.design-toolbar h1 { font: 600 18px/24px "Design Inter", system-ui, sans-serif; letter-spacing: -.025em; margin: 0 auto 0 0; }
+.design-toolbar label { display: flex; align-items: center; gap: 8px; color: var(--color-secondary); }
+.design-workbench button, .design-workbench select { min-height: 36px; border: 1px solid var(--rule); border-radius: 0; background: var(--color-page); color: var(--color-text); padding: 6px 10px; font: inherit; }
+.design-workbench a { font: inherit; color: var(--color-text); }
+.design-toolbar a { min-height: 36px; display: inline-flex; align-items: center; }
+.design-page-picker select { max-width: 210px; }
+.design-layout { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 300px; }
+.design-canvas { min-width: 0; min-height: 0; display: flex; flex-direction: column; background: var(--color-hover); }
+.design-canvas-label { display: flex; justify-content: space-between; gap: 16px; padding: 12px 24px 0; color: var(--color-muted); font-size: 12px; }
+.design-stage { flex: 1; min-height: 0; min-width: 0; overflow: auto; padding: 16px 24px 24px; }
+#design-frame { display: block; box-sizing: content-box; width: var(--preview-width, calc(100% - 2px)); height: calc(100% - 2px); min-height: 240px; border: 1px solid var(--rule); background: var(--color-page); margin-inline: auto; }
+.design-panel { min-width: 0; min-height: 0; overflow-y: auto; border-left: 1px solid var(--rule); padding: 20px; }
+.design-help { color: var(--color-secondary); font-size: 12px; line-height: 18px; margin: 0 0 16px; }
+.design-panel details { border-top: 1px solid var(--rule); }
+.design-panel summary { cursor: pointer; min-height: 48px; display: list-item; list-style: disclosure-closed inside; padding: 14px 0; font-weight: 500; }
+.design-panel details[open] summary { list-style-type: disclosure-open; }
+.design-field { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 20px; }
+.design-field select, .design-field input { grid-column: 1 / -1; width: 100%; min-width: 0; margin: 0; }
+.design-field output { color: var(--color-muted); font-variant-numeric: tabular-nums; font-size: 12px; }
+.design-field input[type="range"] { min-height: 24px; accent-color: var(--link); }
+.design-check { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; margin-bottom: 4px; cursor: pointer; }
+.design-check:last-child { margin-bottom: 16px; }
+.design-check input { width: 18px; height: 18px; accent-color: var(--link); margin: 0; }
+.design-actions { display: flex; gap: 8px; position: sticky; bottom: -20px; padding-block: 16px; background: var(--color-page); border-top: 1px solid var(--rule); }
+.design-actions button { flex: 1; }
+#design-status { font-size: 12px; color: var(--color-secondary); margin: 0; }
+#design-error { border: 1px solid var(--color-secondary); padding: 12px; font-size: 12px; line-height: 18px; }
+#design-copy-fallback { margin-top: 16px; }
+#design-settings-text { width: 100%; margin-top: 8px; padding: 8px; color: var(--color-text); background: var(--color-hover); border: 1px solid var(--rule); resize: vertical; font: 12px/18px ui-monospace, monospace; }
+.design-workbench[data-panel-hidden] .design-layout { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 900px) {
+  .design-layout { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(240px, 1fr) minmax(0, 40%); }
+  .design-panel { border-left: 0; border-top: 1px solid var(--rule); padding: 16px; }
+  .design-actions { bottom: -16px; }
+  .design-workbench[data-panel-hidden] .design-layout { grid-template-rows: minmax(0, 1fr); }
+}
+@media (max-width: 640px) {
+  .design-toolbar { padding: 8px 12px; gap: 4px 12px; }
+  .design-toolbar h1 { flex-basis: 100%; }
+  .design-toolbar label { font-size: 12px; }
+  .design-toolbar select { max-width: 155px; }
+  .design-workbench button, .design-toolbar a { min-height: 44px; }
+  .design-canvas-label { padding-inline: 8px; }
+  .design-stage { padding: 8px; }
+}
