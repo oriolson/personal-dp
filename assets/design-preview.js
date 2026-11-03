@@ -4,8 +4,10 @@ import { defaults, normalizeSettings, parseConfig, configURL, styleVariables } f
 const params = new URLSearchParams(location.search);
 const workbenchURL = new URL('../editorial/design/', import.meta.url);
 const editorialPath = new URL('../editorial/', import.meta.url).pathname;
+const sitePath = new URL('../', import.meta.url).pathname;
+const currentRoot = location.pathname.startsWith(editorialPath) ? editorialPath : sitePath;
 const isLocal = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
-const projectMatch = location.pathname.slice(editorialPath.length).match(/^projects\/([^/]+)\//);
+const projectMatch = location.pathname.slice(currentRoot.length).match(/^projects\/([^/]+)\//);
 if (projectMatch) workbenchURL.searchParams.set('page', projectMatch[1]);
 
 function launcher(url, label) {
@@ -45,7 +47,9 @@ if (params.get('design') !== '1') {
     history.replaceState(null, '', current);
     document.querySelectorAll('a').forEach(link => {
       if (link.classList.contains('design-launcher')) return;
-      if (link.origin === location.origin && link.pathname.startsWith(editorialPath)) {
+      const path = link.pathname.slice(sitePath.length);
+      if (link.origin === location.origin && link.pathname.startsWith(sitePath)
+        && (path === '' || path === 'index.html' || path.startsWith('projects/') || path.startsWith('editorial/'))) {
         const url = configURL(link.href, settings);
         url.searchParams.set('design', '1');
         if (settings.theme !== defaults.theme) url.searchParams.set('theme', settings.theme);
